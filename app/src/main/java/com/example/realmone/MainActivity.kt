@@ -12,7 +12,10 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.realmone.screens.AssignmentScreen
 import com.example.realmone.screens.SecondScreen
+import com.example.realmone.screens.ThirdScreen
+import com.example.realmone.screens.Validated
 import com.example.realmone.ui.theme.RealmOneTheme
+import com.example.realmone.viewmodel.DatabaseViewModel
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -20,8 +23,9 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             val navController = rememberNavController()
+            val viewModel = DatabaseViewModel()
             RealmOneTheme {
-                App(navController)
+                App(navController, viewModel)
             }
         }
     }
@@ -29,7 +33,7 @@ class MainActivity : ComponentActivity() {
 
 
 @Composable
-fun App(navController: NavHostController) {
+fun App(navController: NavHostController, viewModel: DatabaseViewModel) {
 
     NavHost(navController = navController, startDestination = Screens.AssignmentScreen.name) {
         composable(route = Screens.AssignmentScreen.name) {
@@ -37,6 +41,12 @@ fun App(navController: NavHostController) {
         }
         composable(route = Screens.SecondScreen.name) {
             SecondScreen()
+        }
+        composable(route = Screens.ThirdScreen.name) {
+            ThirdScreen(navController, viewModel)
+        }
+        composable(route = Screens.Validated.name) {
+            Validated(viewModel)
         }
 
     }

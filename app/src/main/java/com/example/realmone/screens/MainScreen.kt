@@ -34,7 +34,6 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
-import androidx.navigation.compose.rememberNavController
 import com.example.realmone.Screens
 import com.example.realmone.realm.Student
 import com.example.realmone.viewmodel.DatabaseViewModel
@@ -87,24 +86,21 @@ fun MainScreen(navHostController: NavHostController) {
                     onValueChange = { name = it },
                     label = { Text(text = "Name") }
                 )
-
                 OutlinedTextField(
                     value = age,
                     onValueChange = { age = it },
                     label = { Text(text = "Age") },
                     keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number)
                 )
-
                 OutlinedTextField(
                     value = contact,
                     onValueChange = { contact = it },
                     label = { Text(text = "Contact") },
                     keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number)
                 )
-
                 Spacer(modifier = Modifier.height(30.dp))
                 OutlinedButton(onClick = {
-                    if (name.isEmpty() || age.isEmpty() || contact.isEmpty() ) {
+                    if (name.isEmpty() || age.isEmpty() || contact.isEmpty()) {
                         Toast.makeText(context, "Fill all the fields", Toast.LENGTH_SHORT).show()
                     } else {
                         try {
@@ -116,10 +112,18 @@ fun MainScreen(navHostController: NavHostController) {
                                 this.age = ageInt
                                 this.contact = contactInt
                             }
-                            viewModel.insertStudent(std)
-                            Toast.makeText(context, "Student added successfully", Toast.LENGTH_SHORT).show()
+                            // viewModel.insertStudent(std)
+                            Toast.makeText(
+                                context,
+                                "Student added successfully",
+                                Toast.LENGTH_SHORT
+                            ).show()
                         } catch (e: NumberFormatException) {
-                            Toast.makeText(context, "Invalid input in numeric fields", Toast.LENGTH_SHORT).show()
+                            Toast.makeText(
+                                context,
+                                "Invalid input in numeric fields",
+                                Toast.LENGTH_SHORT
+                            ).show()
                         }
                     }
 
@@ -131,8 +135,9 @@ fun MainScreen(navHostController: NavHostController) {
     }
 }
 
+
 @Preview(showSystemUi = true)
 @Composable
-private fun PreviewMainScreen() {
-    MainScreen(navHostController = rememberNavController())
+private fun ASfd() {
+    // MainScreen(navHostController = rememberNavController())
 }

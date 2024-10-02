@@ -38,16 +38,16 @@ fun AssignmentScreen(navController: NavHostController) {
         Modifier
             .fillMaxWidth()
             .systemBarsPadding(),
-        verticalArrangement = Arrangement.spacedBy(30.dp),
+        verticalArrangement = Arrangement.spacedBy(20.dp),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         OutlinedButton(modifier = Modifier.padding(10.dp, 20.dp), onClick = {
             Toast.makeText(context, "You've liked Leading University", Toast.LENGTH_SHORT).show()
         }) {
             Text(
-                text = "Toast?", fontFamily = volkorn, fontSize = 20.sp,
-
-                )
+                text = "Toast?",
+                fontFamily = volkorn, fontSize = 20.sp
+            )
         }
 
 
@@ -74,6 +74,11 @@ fun AssignmentScreen(navController: NavHostController) {
             navController.navigate(Screens.SecondScreen.name)
         }) {
             Text(text = "Assignment 2", fontFamily = volkorn)
+        }
+        OutlinedButton(onClick = {
+            navController.navigate(Screens.ThirdScreen.name)
+        }) {
+            Text(text = "Assignment 3", fontFamily = volkorn)
         }
 
 
