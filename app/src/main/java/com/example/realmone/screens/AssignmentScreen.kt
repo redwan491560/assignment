@@ -80,6 +80,11 @@ fun AssignmentScreen(navController: NavHostController) {
         }) {
             Text(text = "Assignment 3", fontFamily = volkorn)
         }
+        OutlinedButton(onClick = {
+            navController.navigate(Screens.FourthScreen.name)
+        }) {
+            Text(text = "Assignment 4", fontFamily = volkorn)
+        }
 
 
     }

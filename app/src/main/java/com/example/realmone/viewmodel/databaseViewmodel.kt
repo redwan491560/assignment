@@ -2,6 +2,7 @@ package com.example.realmone.viewmodel
 
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
+import com.example.realmone.Item
 
 class DatabaseViewModel : ViewModel() {
 
@@ -29,26 +30,125 @@ class DatabaseViewModel : ViewModel() {
         return contact.matches(contactRegex)
     }
 
+    val itemslist = mutableListOf(
+        Item(
+            name = "item1",
+            description = "description1",
+            price = 100,
+            image = "https://cdn-icons-png.flaticon.com/128/743/743007.png"
+        ),
+        Item(
+            name = "item2",
+            description = "description2",
+            price = 200,
+            image = "https://cdn-icons-png.flaticon.com/128/10389/10389920.png"
+        ),
+        Item(
+            name = "item3",
+            description = "description3",
+            price = 300,
+            image = "https://cdn-icons-png.flaticon.com/128/3306/3306988.png"
+        ),
+        Item(
+            name = "item4",
+            description = "description4",
+            price = 400,
+            image = "https://cdn-icons-png.flaticon.com/128/8568/8568236.png"
+        ),
+        Item(
+            name = "item5",
+            description = "description5",
+            price = 500,
+            image = "https://cdn-icons-png.flaticon.com/128/10469/10469224.png"
+        ), Item(
+            name = "item1",
+            description = "description1",
+            price = 100,
+            image = "https://cdn-icons-png.flaticon.com/128/743/743007.png"
+        ),
+        Item(
+            name = "item2",
+            description = "description2",
+            price = 200,
+            image = "https://cdn-icons-png.flaticon.com/128/10389/10389920.png"
+        ),
+        Item(
+            name = "item3",
+            description = "description3",
+            price = 300,
+            image = "https://cdn-icons-png.flaticon.com/128/3306/3306988.png"
+        ),
+        Item(
+            name = "item4",
+            description = "description4",
+            price = 400,
+            image = "https://cdn-icons-png.flaticon.com/128/8568/8568236.png"
+        ),
+        Item(
+            name = "item5",
+            description = "description5",
+            price = 500,
+            image = "https://cdn-icons-png.flaticon.com/128/10469/10469224.png"
+        ), Item(
+            name = "item1",
+            description = "description1",
+            price = 100,
+            image = "https://cdn-icons-png.flaticon.com/128/743/743007.png"
+        ),
+        Item(
+            name = "item2",
+            description = "description2",
+            price = 200,
+            image = "https://cdn-icons-png.flaticon.com/128/10389/10389920.png"
+        ),
+        Item(
+            name = "item3",
+            description = "description3",
+            price = 300,
+            image = "https://cdn-icons-png.flaticon.com/128/3306/3306988.png"
+        ),
+        Item(
+            name = "item4",
+            description = "description4",
+            price = 400,
+            image = "https://cdn-icons-png.flaticon.com/128/8568/8568236.png"
+        ),
+        Item(
+            name = "item5",
+            description = "description5",
+            price = 500,
+            image = "https://cdn-icons-png.flaticon.com/128/10469/10469224.png"
+        ), Item(
+            name = "item1",
+            description = "description1",
+            price = 100,
+            image = "https://cdn-icons-png.flaticon.com/128/743/743007.png"
+        ),
+        Item(
+            name = "item2",
+            description = "description2",
+            price = 200,
+            image = "https://cdn-icons-png.flaticon.com/128/10389/10389920.png"
+        ),
+        Item(
+            name = "item3",
+            description = "description3",
+            price = 300,
+            image = "https://cdn-icons-png.flaticon.com/128/3306/3306988.png"
+        ),
+        Item(
+            name = "item4",
+            description = "description4",
+            price = 400,
+            image = "https://cdn-icons-png.flaticon.com/128/8568/8568236.png"
+        ),
+        Item(
+            name = "item5",
+            description = "description5",
+            price = 500,
+            image = "https://cdn-icons-png.flaticon.com/128/10469/10469224.png"
+        )
+    )
 
-//    // Inserting a student into the database
-//    fun insertStudent(student: Student) {
-//        viewModelScope.launch {
-//            Database.realm.write {
-//                copyToRealm(student)
-//            }
-//        }
-//    }
-//
-//    // RealmResults should be a LiveData or State
-//    private val _students = mutableStateOf<List<Student>>(emptyList())
-//    val students: MutableState<List<Student>> = _students
-//
-//    // Function to load students from the database
-//    fun getStudentList() {
-//        viewModelScope.launch {
-//            val result = Database.realm.query<Student>().find()
-//            _students.value = result.toList() // Convert RealmResults to a List
-//        }
-//    }
 
 }

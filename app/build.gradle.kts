@@ -1,8 +1,8 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
-    id ("io.realm.kotlin")
-
+    id("io.realm.kotlin")
+    id("kotlin-kapt")
 }
 
 
@@ -72,9 +72,11 @@ dependencies {
     debugImplementation(libs.androidx.ui.test.manifest)
 
     // realm
-    implementation ("io.realm.kotlin:library-base:1.16.0")
+    implementation("io.realm.kotlin:library-base:1.16.0")
     // If using Device Sync
-    implementation ("io.realm.kotlin:library-sync:1.16.0")
+    implementation("io.realm.kotlin:library-sync:1.16.0")
 
-
+    implementation("io.coil-kt.coil3:coil-compose:3.0.0-rc01")
+    implementation("io.coil-kt.coil3:coil-network-okhttp:3.0.0-rc01")
+// kapt ("com.github.bumptech.glide:compiler:4.12.0")
 }

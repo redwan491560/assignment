@@ -106,10 +106,11 @@ fun SecondScreen() {
                 horizontalArrangement = Arrangement.Center
             ) {
                 Column {
-                    optionsList.forEachIndexed { index, s ->
+                    optionsList.forEachIndexed { _, s ->
                         Row(verticalAlignment = Alignment.CenterVertically) {
                             RadioButton(
                                 selected = (selectedOption == s),
+                                // if selected button is equal to the option then the state is selected
                                 onClick = {
                                     selectedOption = s
                                 }
@@ -132,10 +133,12 @@ fun SecondScreen() {
                     Icon(
                         imageVector = Icons.Default.Star,
                         contentDescription = null,
-                        tint = if (star <= rating) Color.Yellow else Color.Gray,
+                        tint = if (star <= rating) Color.Black else Color.Gray,
                         modifier = Modifier
                             .size(30.dp)
-                            .clickable { rating = star }
+                            .clickable {
+                                rating = star
+                            }
                     )
                 }
                 Text(
@@ -295,8 +298,7 @@ fun SecondScreen() {
                     }
                 }
             }
-
-
+            
         }
 
 
