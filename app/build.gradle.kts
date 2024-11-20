@@ -78,5 +78,4 @@ dependencies {
 
     implementation("io.coil-kt.coil3:coil-compose:3.0.0-rc01")
     implementation("io.coil-kt.coil3:coil-network-okhttp:3.0.0-rc01")
-// kapt ("com.github.bumptech.glide:compiler:4.12.0")
 }

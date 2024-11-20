@@ -11,6 +11,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.realmone.screens.AssignmentScreen
+import com.example.realmone.screens.FifthAssignmentScreen
 import com.example.realmone.screens.FourthScreen
 import com.example.realmone.screens.SecondScreen
 import com.example.realmone.screens.ThirdScreen
@@ -52,8 +53,11 @@ fun App(navController: NavHostController, viewModel: DatabaseViewModel) {
         composable(route = Screens.FourthScreen.name) {
             FourthScreen(viewModel)
         }
-
+        composable(route = Screens.FifthScreen.name) {
+            FifthAssignmentScreen()
+        }
     }
+
 
 }
 

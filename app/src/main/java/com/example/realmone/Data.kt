@@ -3,8 +3,6 @@ package com.example.realmone
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.fillMaxHeight
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
@@ -23,9 +21,10 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil3.compose.AsyncImage
+import com.example.realmone.screens.Data
 
 enum class Screens {
-    MainScreen, ShowDB, AssignmentScreen, SecondScreen, ThirdScreen, Validated, FourthScreen
+    MainScreen, ShowDB, AssignmentScreen, SecondScreen, ThirdScreen, Validated, FourthScreen, FifthScreen
 }
 
 val volkorn = FontFamily(
@@ -85,7 +84,8 @@ class ComposablesDesign {
                     Row(
                         modifier = Modifier
                             .weight(3f)
-                            .padding(15.dp, 5.dp).height(80.dp),
+                            .padding(15.dp, 5.dp)
+                            .height(80.dp),
                         horizontalArrangement = Arrangement.End,
                         verticalAlignment = Alignment.CenterVertically
                     ) {
@@ -105,6 +105,22 @@ class ComposablesDesign {
 }
 
 
+val programmingList = listOf(
+    Data(
+        "C",
+        "Efficient and foundational, used for system-level programming and embedded systems."
+    ),
+    Data(
+        "C++",
+        "Powerful and versatile, ideal for games, graphics, and high-performance software."
+    ),
+    Data("Python", "Simple and flexible, popular for web, AI, and data analysis."),
+    Data("Kotlin", "Modern and safe, preferred for Android and cross-platform apps."),
+    Data("Java", "Stable and portable, a staple for enterprise and Android development."),
+    Data("Swift", "Fast and intuitive, the go-to for Apple ecosystem applications.")
+)
+
+
 @Preview(showSystemUi = true)
 @Composable
 fun Dhgf(modifier: Modifier = Modifier) {
@@ -118,3 +134,5 @@ fun Dhgf(modifier: Modifier = Modifier) {
         )
     )
 }
+
+

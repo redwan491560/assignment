@@ -4,12 +4,14 @@ import android.widget.Toast
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.systemBarsPadding
+import androidx.compose.foundation.layout.width
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.OutlinedCard
@@ -70,20 +72,31 @@ fun AssignmentScreen(navController: NavHostController) {
             fontSize = 20.sp
         )
         Spacer(modifier = Modifier.height(40.dp))
-        OutlinedButton(onClick = {
-            navController.navigate(Screens.SecondScreen.name)
-        }) {
-            Text(text = "Assignment 2", fontFamily = volkorn)
+        Row {
+            OutlinedButton(onClick = {
+                navController.navigate(Screens.SecondScreen.name)
+            }) {
+                Text(text = "Assignment 2", fontFamily = volkorn)
+            }
+            Spacer(modifier = Modifier.width(20.dp))
+            OutlinedButton(onClick = {
+                navController.navigate(Screens.ThirdScreen.name)
+            }) {
+                Text(text = "Assignment 3", fontFamily = volkorn)
+            }
         }
-        OutlinedButton(onClick = {
-            navController.navigate(Screens.ThirdScreen.name)
-        }) {
-            Text(text = "Assignment 3", fontFamily = volkorn)
-        }
-        OutlinedButton(onClick = {
-            navController.navigate(Screens.FourthScreen.name)
-        }) {
-            Text(text = "Assignment 4", fontFamily = volkorn)
+        Row {
+            OutlinedButton(onClick = {
+                navController.navigate(Screens.FourthScreen.name)
+            }) {
+                Text(text = "Assignment 4", fontFamily = volkorn)
+            }
+            Spacer(modifier = Modifier.width(20.dp))
+            OutlinedButton(onClick = {
+                navController.navigate(Screens.FifthScreen.name)
+            }) {
+                Text(text = "Assignment 5", fontFamily = volkorn)
+            }
         }
 
 
