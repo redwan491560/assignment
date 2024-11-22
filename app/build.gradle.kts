@@ -1,8 +1,11 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
-    id("io.realm.kotlin")
-    id("kotlin-kapt")
+//    id("io.realm.kotlin")
+//    id("kotlin-kapt")
+    alias(libs.plugins.compose.compiler)
+    kotlin("plugin.serialization") version "2.0.20"
+
 }
 
 
@@ -71,11 +74,17 @@ dependencies {
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
 
-    // realm
-    implementation("io.realm.kotlin:library-base:1.16.0")
-    // If using Device Sync
-    implementation("io.realm.kotlin:library-sync:1.16.0")
+//    // realm
+//    implementation("io.realm.kotlin:library-base:1.16.0")
+//    // If using Device Sync
+//    implementation("io.realm.kotlin:library-sync:1.16.0")
 
+    // serialization
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.0")
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.7.3")
+
+
+    // coil
     implementation("io.coil-kt.coil3:coil-compose:3.0.0-rc01")
     implementation("io.coil-kt.coil3:coil-network-okhttp:3.0.0-rc01")
 }

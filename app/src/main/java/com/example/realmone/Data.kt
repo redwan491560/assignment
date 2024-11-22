@@ -1,5 +1,7 @@
 package com.example.realmone
 
+import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -7,6 +9,8 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.outlined.KeyboardArrowRight
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Text
@@ -22,9 +26,10 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil3.compose.AsyncImage
 import com.example.realmone.screens.Data
+import kotlinx.serialization.Serializable
 
 enum class Screens {
-    MainScreen, ShowDB, AssignmentScreen, SecondScreen, ThirdScreen, Validated, FourthScreen, FifthScreen
+    AssignmentScreen, SecondScreen, ThirdScreen, Validated, FourthScreen, FifthScreen, SixthScreen, SeventhScreen
 }
 
 val volkorn = FontFamily(
@@ -37,6 +42,13 @@ data class Item(
     val description: String = "",
     val price: Int = 0,
     val image: String? = null
+)
+
+@Serializable
+data class ItemParam(
+    val name: String = "",
+    val description: String = "",
+    val price: Int = 0
 )
 
 
@@ -101,6 +113,58 @@ class ComposablesDesign {
 
             }
         }
+
+
+        @Composable
+        fun ItemCardClickable(item: ItemParam, onClick: () -> Unit) {
+            Card(
+                modifier = Modifier
+                    .padding(8.dp),
+                shape = RoundedCornerShape(8.dp),
+                elevation = CardDefaults.cardElevation(4.dp),
+                colors = CardDefaults.cardColors(Color.White)
+            ) {
+                Row {
+                    Column(
+                        modifier = Modifier
+                            .weight(6f)
+                            .padding(10.dp, 5.dp),
+                        verticalArrangement = Arrangement.spacedBy(10.dp)
+                    ) {
+                        Row(
+                            horizontalArrangement = Arrangement.spacedBy(30.dp),
+                            verticalAlignment = Alignment.CenterVertically
+                        ) {
+                            TextDesign(text = item.name, size = 22)
+                            TextDesign(text = item.price.toString() + "$", size = 22)
+                        }
+                        TextDesign(text = item.description, size = 18)
+                    }
+                    Row(
+                        modifier = Modifier
+                            .weight(3f)
+                            .padding(15.dp, 5.dp)
+                            .height(60.dp),
+                        horizontalArrangement = Arrangement.End,
+                        verticalAlignment = Alignment.CenterVertically
+                    ) {
+                        Image(
+                            imageVector = Icons.AutoMirrored.Outlined.KeyboardArrowRight,
+                            contentDescription = "null",
+                            modifier = Modifier
+                                .size(35.dp)
+                                .clickable {
+                                    onClick()
+                                }
+                        )
+                    }
+
+                }
+
+
+            }
+        }
+
     }
 }
 
@@ -124,15 +188,13 @@ val programmingList = listOf(
 @Preview(showSystemUi = true)
 @Composable
 fun Dhgf(modifier: Modifier = Modifier) {
-    ComposablesDesign.ItemCard(
-        item = Item(
-            name = "Item1",
-            description = "Description2",
-            price = 100,
-            image = "https://www.freepik.com/icon/blood_655983#fromView=keyword&page=1&position=1&uuid=ab625699-27b7-4c2a-ade1-7747ecda9b4b"
-
+    ComposablesDesign.ItemCardClickable(
+        item = ItemParam(
+            name = "Item1", price = 200, description = "item1 description"
         )
-    )
+    ) {
+
+    }
 }
 
 

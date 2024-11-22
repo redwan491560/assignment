@@ -28,7 +28,6 @@ fun FourthScreen(viewModel: DatabaseViewModel) {
             ItemCard(item = it)
         }
 
-
     }
 
 }

@@ -98,6 +98,19 @@ fun AssignmentScreen(navController: NavHostController) {
                 Text(text = "Assignment 5", fontFamily = volkorn)
             }
         }
+        Row {
+            OutlinedButton(onClick = {
+                navController.navigate(Screens.SixthScreen.name)
+            }) {
+                Text(text = "Assignment 6", fontFamily = volkorn)
+            }
+            Spacer(modifier = Modifier.width(20.dp))
+            OutlinedButton(enabled = false, onClick = {
+                navController.navigate(Screens.SeventhScreen.name)
+            }) {
+                Text(text = "Assignment 7", fontFamily = volkorn)
+            }
+        }
 
 
     }

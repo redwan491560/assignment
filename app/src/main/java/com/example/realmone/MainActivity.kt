@@ -10,10 +10,13 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import androidx.navigation.toRoute
 import com.example.realmone.screens.AssignmentScreen
+import com.example.realmone.screens.DisplayScreen
 import com.example.realmone.screens.FifthAssignmentScreen
 import com.example.realmone.screens.FourthScreen
 import com.example.realmone.screens.SecondScreen
+import com.example.realmone.screens.SixthScreen
 import com.example.realmone.screens.ThirdScreen
 import com.example.realmone.screens.Validated
 import com.example.realmone.ui.theme.RealmOneTheme
@@ -56,6 +59,16 @@ fun App(navController: NavHostController, viewModel: DatabaseViewModel) {
         composable(route = Screens.FifthScreen.name) {
             FifthAssignmentScreen()
         }
+        composable(route = Screens.SixthScreen.name) {
+            SixthScreen(navController)
+        }
+
+        composable<ItemParam>() {
+            val args = it.toRoute<ItemParam>()
+            DisplayScreen(args)
+        }
+
+
     }
 
 
@@ -67,3 +80,8 @@ fun App(navController: NavHostController, viewModel: DatabaseViewModel) {
 private fun Jhdfd() {
     AssignmentScreen(rememberNavController())
 }
+
+//        composable<MedicineViewer> {
+//            val args = it.toRoute<MedicineViewer>()
+//            MedicineViewerScreen(args, navController)
+//        }

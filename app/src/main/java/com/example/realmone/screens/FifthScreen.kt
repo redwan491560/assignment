@@ -70,7 +70,6 @@ fun ListItemComposable(
     onclick: () -> Unit
 ) {
 
-
     OutlinedCard(
         shape = RoundedCornerShape(6.dp), modifier = Modifier.padding(5.dp)
     ) {
@@ -111,10 +110,5 @@ fun ListItemComposable(
 @Preview(showSystemUi = true)
 @Composable
 private fun jf() {
-    ListItemComposable(
-        text = "Item 1",
-        description = "this is the item 1's description", isExpanded = true
-    ) {
-
-    }
+    FifthAssignmentScreen()
 }
