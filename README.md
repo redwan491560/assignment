@@ -4,3 +4,7 @@ you can see the assignmnet divided into 2 screen. first one is assignment 1 and 
 assignment done on regex for signup. assignment 3
 
 assignment 4 path contains the custome listview
+
+assignment 5 consist of expandable listview
+
+assignment 6 consist of recyclerview or listview with arguments passed
