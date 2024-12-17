@@ -27,9 +27,7 @@ fun FourthScreen(viewModel: DatabaseViewModel) {
         list.forEach {
             ItemCard(item = it)
         }
-
     }
-
 }
 
 

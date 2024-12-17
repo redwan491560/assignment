@@ -2,7 +2,6 @@ package com.example.realmone.screens
 
 import android.annotation.SuppressLint
 import android.widget.Toast
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -12,7 +11,6 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.systemBarsPadding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
@@ -32,7 +30,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
@@ -43,7 +40,6 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.example.realmone.ComposablesDesign.Companion.TextDesign
-import com.example.realmone.R
 import com.example.realmone.Screens
 import com.example.realmone.ui.theme.login
 import com.example.realmone.ui.theme.loginCard
@@ -64,19 +60,6 @@ fun ThirdScreen(navHostController: NavHostController, databaseViewModel: Databas
     var expandedPhone by remember {
         mutableStateOf(false)
     }
-
-
-    var passState by remember {
-        mutableStateOf(false)
-    }
-
-    var phoneState by remember {
-        mutableStateOf(true)
-    }
-    var emailState by remember {
-        mutableStateOf(true)
-    }
-
 
 
     Scaffold(
@@ -145,16 +128,6 @@ fun ThirdScreen(navHostController: NavHostController, databaseViewModel: Databas
                     singleLine = true,
                     placeholder = {
                         TextDesign(text = "Contact", size = 14)
-                    }, trailingIcon = {
-                        Image(
-                            painter = painterResource(id = R.drawable.i),
-                            contentDescription = null,
-                            Modifier
-                                .size(15.dp)
-                                .clickable {
-                                    expandedPhone = !expandedPhone
-                                }
-                        )
                     },
                     modifier = Modifier
                         .height(60.dp)
@@ -199,18 +172,6 @@ fun ThirdScreen(navHostController: NavHostController, databaseViewModel: Databas
                         fontFamily = volkorn,
                         fontSize = 14.sp,
                     )
-                }, trailingIcon = {
-                    Image(
-                        painter = painterResource(id = R.drawable.i),
-                        contentDescription = null,
-                        Modifier
-                            .size(15.dp)
-                            .clickable {
-                                expandedEmail = !expandedEmail
-                            }
-                    )
-
-
                 },
                 modifier = Modifier
                     .fillMaxWidth()
@@ -246,17 +207,6 @@ fun ThirdScreen(navHostController: NavHostController, databaseViewModel: Databas
                 textStyle = TextStyle(
                     fontFamily = volkorn, fontSize = 14.sp
                 ),
-                trailingIcon = {
-                    Image(
-                        painter = painterResource(id = R.drawable.i),
-                        contentDescription = null,
-                        Modifier
-                            .size(15.dp)
-                            .clickable {
-                                expandedPass = !expandedPass
-                            }
-                    )
-                },
                 singleLine = true,
                 placeholder = {
                     Text(

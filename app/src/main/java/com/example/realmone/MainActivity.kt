@@ -11,9 +11,10 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.toRoute
+import com.example.realmone.screens.ArticleViewerScreen
 import com.example.realmone.screens.AssignmentScreen
-import com.example.realmone.screens.DisplayScreen
 import com.example.realmone.screens.FifthAssignmentScreen
+import com.example.realmone.screens.FirstScreen
 import com.example.realmone.screens.FourthScreen
 import com.example.realmone.screens.SecondScreen
 import com.example.realmone.screens.SixthScreen
@@ -29,7 +30,9 @@ class MainActivity : ComponentActivity() {
         setContent {
             val navController = rememberNavController()
             val viewModel = DatabaseViewModel()
-            RealmOneTheme {
+            RealmOneTheme(
+                darkTheme = false, dynamicColor = false
+            ) {
                 App(navController, viewModel)
             }
         }
@@ -43,6 +46,9 @@ fun App(navController: NavHostController, viewModel: DatabaseViewModel) {
     NavHost(navController = navController, startDestination = Screens.AssignmentScreen.name) {
         composable(route = Screens.AssignmentScreen.name) {
             AssignmentScreen(navController)
+        }
+        composable(route = Screens.FirstScreen.name) {
+            FirstScreen()
         }
         composable(route = Screens.SecondScreen.name) {
             SecondScreen()
@@ -63,9 +69,10 @@ fun App(navController: NavHostController, viewModel: DatabaseViewModel) {
             SixthScreen(navController)
         }
 
-        composable<ItemParam>() {
-            val args = it.toRoute<ItemParam>()
-            DisplayScreen(args)
+
+        composable<ArticleViewer> {
+            val args = it.toRoute<ArticleViewer>()
+            ArticleViewerScreen(args)
         }
 
 

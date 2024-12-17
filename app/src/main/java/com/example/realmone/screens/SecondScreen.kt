@@ -21,10 +21,16 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Star
+import androidx.compose.material.icons.outlined.ArrowDropDown
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Checkbox
+import androidx.compose.material3.DropdownMenuItem
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.ExposedDropdownMenuBox
+import androidx.compose.material3.ExposedDropdownMenuDefaults
 import androidx.compose.material3.Icon
+import androidx.compose.material3.MenuAnchorType
 import androidx.compose.material3.RadioButton
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Slider
@@ -43,6 +49,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -51,10 +58,14 @@ import com.example.realmone.ui.theme.darkMode
 import com.example.realmone.volkorn
 
 
+@OptIn(ExperimentalMaterial3Api::class)
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
 fun SecondScreen() {
-
+    val userType = listOf("Type1", "Type2", "Type3", "Type4")
+    var info by remember {
+        mutableStateOf("Type1")
+    }
     var isChecked by remember { mutableStateOf(false) }
     val optionsList = listOf("Option 1", "Option 2", "Option 3", "Option 4")
     var selectedOption by remember { mutableStateOf("Option 1") }
@@ -79,6 +90,7 @@ fun SecondScreen() {
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Text(text = "Assignment 2", fontFamily = volkorn, fontSize = 20.sp)
+            // checkbox
             Row(
                 Modifier
                     .fillMaxWidth()
@@ -121,6 +133,7 @@ fun SecondScreen() {
 
                 }
             }
+            // rating bar
             Row(
                 Modifier
                     .fillMaxWidth()
@@ -148,6 +161,7 @@ fun SecondScreen() {
                     modifier = Modifier.padding(25.dp, 3.dp)
                 )
             }
+            // slider
             Row(
                 Modifier
                     .fillMaxWidth()
@@ -170,7 +184,7 @@ fun SecondScreen() {
                     )
                 }
             }
-
+            // switch
             Row(
                 Modifier
                     .fillMaxWidth()
@@ -210,6 +224,72 @@ fun SecondScreen() {
                         fontSize = 18.sp,
                         textAlign = TextAlign.Center
                     )
+                }
+            }
+
+            // dropdown menu
+            Row(modifier = Modifier.padding(bottom = 20.dp)) {
+                var expanded by remember { mutableStateOf(false) }
+
+                ExposedDropdownMenuBox(
+                    expanded = expanded, onExpandedChange = {
+                        expanded = !expanded
+                    }, modifier = Modifier
+                        .width(250.dp)
+                ) {
+                    Card(
+                        shape = RoundedCornerShape(8.dp),
+                        elevation = CardDefaults.cardElevation(8.dp),
+
+                        ) {
+                        Row(
+                            modifier = Modifier
+                                .padding(15.dp, 10.dp)
+                                .menuAnchor(MenuAnchorType.SecondaryEditable, true),
+                            verticalAlignment = Alignment.CenterVertically,
+                            horizontalArrangement = Arrangement.Center
+                        ) {
+                            Text(
+                                text = info,
+                                fontSize = 18.sp,
+                                fontFamily = volkorn,
+                                modifier = Modifier.weight(8f), maxLines = 1,
+                                overflow = TextOverflow.Ellipsis,
+                            )
+                            Icon(
+                                imageVector = Icons.Outlined.ArrowDropDown,
+                                contentDescription = null
+                            )
+
+                        }
+                    }
+                    ExposedDropdownMenu(
+                        matchTextFieldWidth = true,
+                        shape = RoundedCornerShape(10.dp),
+                        expanded = expanded,
+                        onDismissRequest = { expanded = false },
+                        scrollState = rememberScrollState()
+                    ) {
+
+                        userType.forEachIndexed { index, string ->
+                            DropdownMenuItem(
+                                text = {
+                                    Text(
+                                        text = string,
+                                        fontFamily = volkorn,
+                                        fontSize = 14.sp
+                                    )
+                                },
+                                onClick = {
+                                    info = userType[index] // Update selected item
+                                    expanded = false // Close dropdown after selection
+                                },
+                                contentPadding = ExposedDropdownMenuDefaults.ItemContentPadding
+                            )
+
+                        }
+                    }
+
                 }
             }
             Spacer(modifier = Modifier.height(10.dp))
@@ -296,9 +376,24 @@ fun SecondScreen() {
                             textAlign = TextAlign.Center
                         )
                     }
+                    Row(
+                        horizontalArrangement = Arrangement.spacedBy(20.dp)
+                    ) {
+                        Text(
+                            text = "DropDownMenu:",
+                            fontSize = 16.sp,
+                            fontFamily = volkorn
+                        )
+                        Text(
+                            text = info,
+                            fontFamily = volkorn,
+                            fontSize = 16.sp,
+                            textAlign = TextAlign.Center
+                        )
+                    }
                 }
             }
-            
+
         }
 
 

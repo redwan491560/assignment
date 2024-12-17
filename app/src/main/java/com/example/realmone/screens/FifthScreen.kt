@@ -14,6 +14,7 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.KeyboardArrowDown
 import androidx.compose.material.icons.outlined.KeyboardArrowUp
+import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Icon
 import androidx.compose.material3.OutlinedCard
 import androidx.compose.material3.Text
@@ -24,10 +25,13 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.realmone.ComposablesDesign
 import com.example.realmone.programmingList
+import com.example.realmone.volkorn
 
 
 @Composable
@@ -40,20 +44,29 @@ fun FifthAssignmentScreen() {
 
     Column(
         modifier = Modifier
-            .fillMaxWidth()
             .systemBarsPadding()
-            .padding(10.dp, 20.dp)
+            .padding(top = 40.dp, start = 15.dp),
+        verticalArrangement = Arrangement.spacedBy(0.dp)
     ) {
-        programmingList.forEachIndexed { index, str ->
-            ListItemComposable(
-                text = str.text,
-                description = str.description,
-                isExpanded = index == expandedIndex
-            ) {
-                expandedIndex = if (index == expandedIndex) -1 else index
+        ComposablesDesign.TextDesign(text = "Programming Languages", size = 18)
+        Column(
+            modifier = Modifier
+                .fillMaxWidth()
+                .systemBarsPadding()
+                .padding(5.dp, 15.dp), verticalArrangement = Arrangement.spacedBy(8.dp)
+        ) {
+            programmingList.forEachIndexed { index, str ->
+                ListItemComposable(
+                    text = str.text,
+                    description = str.description,
+                    isExpanded = index == expandedIndex
+                ) {
+                    expandedIndex = if (index == expandedIndex) -1 else index
+                }
             }
         }
     }
+
 
 }
 
@@ -71,7 +84,11 @@ fun ListItemComposable(
 ) {
 
     OutlinedCard(
-        shape = RoundedCornerShape(6.dp), modifier = Modifier.padding(5.dp)
+        shape = RoundedCornerShape(6.dp),
+        modifier = Modifier.padding(5.dp),
+        colors = CardDefaults.cardColors(
+            Color(0xFFBDDEEC)
+        )
     ) {
         Column(
             modifier = Modifier
@@ -83,7 +100,7 @@ fun ListItemComposable(
                 verticalAlignment = Alignment.CenterVertically,
                 horizontalArrangement = Arrangement.SpaceBetween
             ) {
-                Text(text = text, fontSize = 20.sp)
+                Text(text = text, fontSize = 20.sp, fontFamily = volkorn)
                 Icon(
                     imageVector = if (isExpanded) Icons.Outlined.KeyboardArrowUp else Icons.Outlined.KeyboardArrowDown,
                     contentDescription = null,
@@ -96,19 +113,17 @@ fun ListItemComposable(
             }
             Spacer(modifier = Modifier.height(5.dp))
             if (isExpanded) {
-                Text(text = description, fontSize = 16.sp)
+                Text(text = description, fontFamily = volkorn, fontSize = 16.sp)
             }
 
         }
 
-
     }
-
 
 }
 
 @Preview(showSystemUi = true)
 @Composable
-private fun jf() {
+private fun Jf() {
     FifthAssignmentScreen()
 }

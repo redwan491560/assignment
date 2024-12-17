@@ -5,6 +5,7 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
@@ -21,6 +22,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -29,7 +31,7 @@ import com.example.realmone.screens.Data
 import kotlinx.serialization.Serializable
 
 enum class Screens {
-    AssignmentScreen, SecondScreen, ThirdScreen, Validated, FourthScreen, FifthScreen, SixthScreen, SeventhScreen
+    AssignmentScreen, FirstScreen, SecondScreen, ThirdScreen, Validated, FourthScreen, FifthScreen, SixthScreen, SeventhScreen
 }
 
 val volkorn = FontFamily(
@@ -63,8 +65,19 @@ fun generateRandomString(): String {
 class ComposablesDesign {
     companion object {
         @Composable
-        fun TextDesign(text: String, size: Int = 16, color: Color = Color.Black) {
-            Text(text = text, fontSize = size.sp, color = color)
+        fun TextDesign(
+            text: String,
+            size: Int = 16,
+            color: Color = Color.Black,
+            selected: Boolean = false
+        ) {
+            Text(
+                text = text,
+                fontSize = size.sp,
+                color = color,
+                fontFamily = volkorn,
+                textDecoration = if (selected) TextDecoration.Underline else TextDecoration.None
+            )
 
         }
 
@@ -124,47 +137,38 @@ class ComposablesDesign {
                 elevation = CardDefaults.cardElevation(4.dp),
                 colors = CardDefaults.cardColors(Color.White)
             ) {
-                Row {
+                Row(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(8.dp),
+                    horizontalArrangement = Arrangement.SpaceBetween
+                ) {
                     Column(
                         modifier = Modifier
-                            .weight(6f)
                             .padding(10.dp, 5.dp),
-                        verticalArrangement = Arrangement.spacedBy(10.dp)
+                        verticalArrangement = Arrangement.spacedBy(8.dp)
                     ) {
                         Row(
                             horizontalArrangement = Arrangement.spacedBy(30.dp),
                             verticalAlignment = Alignment.CenterVertically
                         ) {
                             TextDesign(text = item.name, size = 22)
-                            TextDesign(text = item.price.toString() + "$", size = 22)
+                            TextDesign(text = item.price.toString() + " tk", size = 22)
                         }
-                        TextDesign(text = item.description, size = 18)
                     }
-                    Row(
+
+                    Image(
+                        imageVector = Icons.AutoMirrored.Outlined.KeyboardArrowRight,
+                        contentDescription = "null",
                         modifier = Modifier
-                            .weight(3f)
-                            .padding(15.dp, 5.dp)
-                            .height(60.dp),
-                        horizontalArrangement = Arrangement.End,
-                        verticalAlignment = Alignment.CenterVertically
-                    ) {
-                        Image(
-                            imageVector = Icons.AutoMirrored.Outlined.KeyboardArrowRight,
-                            contentDescription = "null",
-                            modifier = Modifier
-                                .size(35.dp)
-                                .clickable {
-                                    onClick()
-                                }
-                        )
-                    }
-
+                            .size(35.dp)
+                            .clickable {
+                                onClick()
+                            }
+                    )
                 }
-
-
             }
         }
-
     }
 }
 
@@ -182,6 +186,47 @@ val programmingList = listOf(
     Data("Kotlin", "Modern and safe, preferred for Android and cross-platform apps."),
     Data("Java", "Stable and portable, a staple for enterprise and Android development."),
     Data("Swift", "Fast and intuitive, the go-to for Apple ecosystem applications.")
+)
+
+@Serializable
+data class ArticleViewer(
+    val title: String = "",
+    val description: String = "",
+    val author: String = "",
+    val view: Int = 0,
+    val rating: Double = 0.2,
+    val image: Int? = null,
+    val category: String? = null
+)
+
+
+val articleList = listOf(
+    ArticleViewer(
+        title = "Covid-19. How to keep your family safe!",
+        description = "As the Covid-19 pandemic continues to pose challenges globally, ensuring the safety of your loved ones is more important than ever. This article provides practical advice on protecting your family from the virus, including tips on maintaining hygiene, understanding the importance of vaccines, and staying updated on the latest health protocols. Learn how to create a safer environment at home and navigate public spaces responsibly during these uncertain times.",
+        author = "Redwan Hussain",
+        category = "Health",
+        view = 1234,
+        rating = 3.5,
+        image = R.drawable.covid
+    ), ArticleViewer(
+        title = "Why mental health is important for us!",
+        description = "Mental health is an integral part of our overall well-being, yet it often goes unnoticed in daily life. This article explores why mental health matters, emphasizing its connection to emotional resilience, physical health, and personal growth. It also highlights common challenges people face, ways to prioritize mental wellness, and the importance of fostering open conversations to eliminate stigma. Discover practical strategies for building a healthier mind and supporting those around you",
+        author = "Redwan Hussain",
+        category = "Health",
+        view = 1234,
+        rating = 3.5,
+        image = R.drawable.mental
+    ),
+    ArticleViewer(
+        title = "How to Maintain a Zero Percent Body Fat",
+        description = "The idea of achieving zero percent body fat is a goal often glamorized, but is it truly realistic or healthy? This article delves into the science behind body fat percentages, shedding light on the dangers of striving for extremes and the potential health risks involved. It also emphasizes the importance of balanced nutrition, sustainable fitness routines, and setting realistic health goals that prioritize overall well-being rather than unattainable standards",
+        author = "Redwan Hussain",
+        category = "Health",
+        view = 1234,
+        rating = 3.5,
+        image = R.drawable.health
+    )
 )
 
 

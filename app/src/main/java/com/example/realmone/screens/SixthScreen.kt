@@ -1,9 +1,13 @@
 package com.example.realmone.screens
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.systemBarsPadding
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -19,81 +23,91 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
+import com.example.realmone.ArticleViewer
 import com.example.realmone.ComposablesDesign
-import com.example.realmone.ItemParam
+import com.example.realmone.articleList
+import com.example.realmone.volkorn
 
 @Composable
 fun SixthScreen(navController: NavController) {
-
-
-    val foodItems = listOf(
-        ItemParam(
-            name = "Burger", description = "Juicy beef burger with lettuce and tomato", price = 200
-        ),
-        ItemParam(name = "Pizza", description = "Cheese-loaded Margherita pizza", price = 500),
-        ItemParam(name = "Pasta", description = "Creamy Alfredo pasta with mushrooms", price = 350),
-        ItemParam(
-            name = "Salad",
-            description = "Fresh garden salad with vinaigrette dressing",
-            price = 150
-        ),
-        ItemParam(
-            name = "Steak",
-            description = "Grilled rib-eye steak with peppercorn sauce",
-            price = 1200
-        ),
-        ItemParam(
-            name = "Ice Cream",
-            description = "Creamy vanilla ice cream topped with chocolate syrup",
-            price = 120
-        )
-    )
-
 
     Column(
         modifier = Modifier
             .fillMaxSize()
             .systemBarsPadding()
+            .padding(top = 30.dp, start = 10.dp)
     ) {
-        foodItems.forEach {
-            ComposablesDesign.ItemCardClickable(item = it) {
+        Row(
+            horizontalArrangement = Arrangement.spacedBy(10.dp)
+        ) {
+            ComposablesDesign.TextDesign(text = "Article", selected = true)
+            ComposablesDesign.TextDesign(text = "News")
+            ComposablesDesign.TextDesign(text = "Journals")
+        }
+        Spacer(modifier = Modifier.height(15.dp))
+        articleList.forEach {
+            ArticleDesign(
+                articleViewer = it
+            ) {
                 navController.navigate(
-                    ItemParam(
-                        name = it.name, price = it.price, description = it.description
+                    ArticleViewer(
+                        title = it.title,
+                        description = it.description,
+                        author = it.author,
+                        image = it.image,
+                        view = it.view,
+                        rating = it.rating,
+                        category = it.category
                     )
                 )
             }
         }
-
     }
-
 }
 
+
 @Composable
-fun DisplayScreen(itemParam: ItemParam) {
+fun ArticleDesign(articleViewer: ArticleViewer, onClick: () -> Unit) {
 
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center,
         modifier = Modifier
             .fillMaxWidth()
-            .padding(10.dp, 40.dp)
+            .padding(10.dp, 5.dp)
             .systemBarsPadding()
     ) {
         Card(
             modifier = Modifier
-                .padding(8.dp),
+                .fillMaxWidth()
+                .clickable { onClick() },
             shape = RoundedCornerShape(8.dp),
             elevation = CardDefaults.cardElevation(4.dp),
-            colors = CardDefaults.cardColors(Color.White)
+            colors = CardDefaults.cardColors(Color(0xfffffff0))
         ) {
             Column(
-                Modifier.padding(8.dp), verticalArrangement = Arrangement.spacedBy(8.dp)
+                Modifier.padding(10.dp, 8.dp), verticalArrangement = Arrangement.spacedBy(4.dp)
             ) {
-                Text(text = "Name: ${itemParam.name}", fontSize = 22.sp)
-                Text(text = "Price: ${itemParam.price}$", fontSize = 18.sp)
-                Text(text = itemParam.description, fontSize = 16.sp)
-
+                Text(text = articleViewer.title, fontSize = 16.sp, fontFamily = volkorn)
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.SpaceBetween
+                ) {
+                    Text(
+                        text = "By: ${articleViewer.author}",
+                        fontSize = 14.sp,
+                        fontFamily = volkorn
+                    )
+                    Row(
+                        horizontalArrangement = Arrangement.spacedBy(8.dp)
+                    ) {
+                        Text(
+                            text = "views: ${articleViewer.view}",
+                            fontSize = 14.sp,
+                            fontFamily = volkorn
+                        )
+                    }
+                }
             }
 
         }

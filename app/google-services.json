@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "712869236922",
+    "project_id": "realmonebyredwan",
+    "storage_bucket": "realmonebyredwan.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:712869236922:android:0cbc66173c4a9f82b83283",
+        "android_client_info": {
+          "package_name": "com.example.realmone"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA9Sl-C3c8Yf8ioiA0BOBlrRK3fN9bwvPo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
